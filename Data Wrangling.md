@@ -1,0 +1,46 @@
+- Journal log:
+	- `journactl`
+- ssh executing cmd:
+	- `ssh *HOST* *cmd*`
+- **Regular Expression filter** ^b7c6e7
+	- `sed -E 's/{pattern}/{switching pattern}/[g]'`
+		- substitude pattern into {switching pattern}, /g for global switching
+	- Important patterns:
+		- `[a-z]` stands for any char in a-z
+			- more is added: `[a-z0-9.+-]` stands for any char of that were given
+		- following with modifiers:
+			- `*` --> 0~inf, more is good
+			- `+` --> 1~inf, more is good
+				- following with `?` means less is good (non greedy)
+			- `?` --> 0 or 1 time
+		- ancors: setting the specific position:
+			- `^` --> stands for the head
+			- `$` --> stands for the tail
+- `sort`
+	- *empty args*
+		- sort by default
+	- `-nk*,*`
+		- numerical sorting, from k\[olumn\] \* to \*
+	- `-r` reversed order
+	- More at man.
+- `awk`: Stream input output processing each line with columns
+	- given a cmd like `'{print $2}'` to get the second column of input
+	- also support Regex:
+		- `awk '$2 ~ /^C.*r$/ {print $0}'` will give the whole line (where `{print$0}` regulated) that starts with C and ends with r.
+- `paste`: combine multiple input with given format
+	- `paste -sd`,   will combine the input elements with `,` a comma.
+		- For example: `ls . | paste -sd,` gives all files in the `pwd`
+- `bc` :berkley calculator
+	- read from stdin
+		- `echo "1+2" | bc -l` outputs `3`
+	- numerical data can be concated with `paste -sd+` and `| bc -l` to get their sum
+- `grep`
+	- `-v` means **DON'T MATCH**
+- `xargs`: make the stream input to be the arguments of the given commands
+	- `echo "sth." | xargs [echo] *cmd*`
+		- with `echo` arg: give out the full cmd with the arguments that is about to execute.
+		- without `echo` arg: execute the full cmd.
+	- `ls | xargs rm` or sth.
+- `tee`: read from stdin and store into a given FILE
+	- `tee $(FILE)*`
+- 

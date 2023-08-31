@@ -1,0 +1,37 @@
+- Single Char
+	- Typing a literal non-meta char
+		- `abc` matches any string with a substring `"abc"`
+	- `.` any char
+		- `\.` for literally a dot
+	- `[abc]` matches a, b, or c
+		- `[^abc]` matches any char exclude from a, b, and c.
+	- `\d` matches a single digit
+	- `\w` matches `[A-Za-z0-9_]`
+- Multiple Char
+	- repeating Single Char:
+		- `{\d}` gives a specific repeating time
+			- `a{3}` matches `"aaa"`
+		- `{1,10}` gives a repetition range
+			- `{2,}` means no max limit
+	- `*` and `+` and `?`(optional)
+		- noted in [[Data Wrangling#^b7c6e7|this note]] 
+- Capture Group
+	- `(pattern)`
+		- can use all patterns in regular expression
+		- can use `|` to do selection
+			- `(haha|hehe)` matches `"haha"` or `"hehe"` 
+	- Backreffing Capture Group (In an Editor or sth.)
+		- `\1`, `\2`, ..., 
+			- `\0` represents the full text and is reserved
+		- good example of swapping the digits around a `'-'` char:
+			- match `(\d+)-(\d+)` and replace with `(\2)-(\1)`
+- Special Char
+	- Upper Version usually represents the oppsite function
+		- `\d` digits
+			- `\D` non-digits
+		- `\s` whitespace
+			- `\S` non-whitespace
+		- `\w` letters and digits (alphanumeric)
+			- `\W` non-alphanumeric
+	- `\b` matches the boundary between a word and non-word char
+		- offen used like `\w+b` in Capture Group
